@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pokes</title>
+    <style>
+
+        .Container {
+            position: relative;
+            width: 970px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .Head h1{
+            margin-bottom: 0;
+        }
+
+        .Head h3 {
+            margin-top: 0;
+            font-weight: normal;
+        }
+
+        .Head h4 a {
+            position: absolute;
+            right: 0px;
+            top: 20px;
+            font-size: 130%;
+            text-decoration: none;
+        }
+
+        .Head h4 a:hover {
+            color: #000;
+        }
+
+        table {
+            border: 1px solid black;
+            border-spacing: 30px 5px;
+        }
+
+        table a {
+            border: 2px solid #000;
+            color: #000000;
+            display: block;
+            text-align: center;
+            padding: 5px 10px; 
+            text-decoration: none; 
+            
+        }
+
+        p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="Container">
+        <div class="Head">
+            <h1>Welcome, {{ welcome }}</h1>
+            <h3>*** people poked you!</h3>
+            <h4><a href="/logout">Logout</a></h4>
+        </div>
+
+        <div class="Poked-you">
+
+        </div>
+
+        <div class="People">
+            <p>People you may want to poke:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Alias</th>
+                        <th>Email Address</th>
+                        <th>Poke History</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.alias }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>Blank</td>
+                        <td><a href="/button">Poke</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

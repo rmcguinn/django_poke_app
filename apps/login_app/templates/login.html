@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login/Registration</title>
+</head>
+<body>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form action="/register" method="post">
+        {% csrf_token %}
+        <h2>Register here</h2>
+        <label for="name">Enter your name</label> <br> 
+        <input type="text" name="name" id=""> <br> <br>
+        <label for="alias">Enter your alias</label> <br> 
+        <input type="text" name="alias" id=""> <br> <br>
+        <label for="email">Enter your email</label> <br> 
+        <input type="text" name="email" id=""> <br> <br>
+        <label for="password">Enter your password</label> <br> 
+        <input type="text" name="password" id="" placeholder="minimum 8 characters"> <br> <br>
+        <label for="c_password">Confirm your password</label> <br> 
+        <input type="text" name="c_password" id="" placeholder="passwords must match"> <br> <br>
+        <!-- <label for="dob">Enter your date of birth</label> <br> 
+        <input type="date" name="dob" id=""> -->
+        <input type="submit" value="Submit"> 
+    </form>
+    <h3>Login here</h3>
+    <form action="/login" method="post">
+        {% csrf_token %}
+        <input type="text" name="email" placeholder="Enter your email"> <br> <br>
+        <input type="text" name="password" placeholder="Enter your password"> <br> <br>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>

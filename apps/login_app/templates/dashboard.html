@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quotes</title>
+    <style>
+        .Quotes {
+            border: 1px solid black;
+            width: 25%;
+            margin-bottom: 20px;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome {{ request.session.name }}</h1> <br>
+    <h3><a href="/logout">Logout</a></h3>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+
+    <h3>Contribute a quote</h3>
+    <form action="/new_quote" method="post">
+        {% csrf_token %}
+        <label for="quoted_by">Quoted By:</label>
+        <input type="text" name="quoted_by" id=""> <br> <br>
+        <label for="quote">Message:</label>
+        <input type="text" name="quote" id=""> <br> <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2>Quotable Quotes</h2>
+
+        {% for quote in quotes %}
+            <div class="Quotes">
+                <form action="/favorites" method="post">
+                    {% csrf_token %}
+                    <h3>{{ quote.quoted_by }}:</h3> <p>"{{ quote.quote }}"</p>
+                    <p> Posted By: <a href="users/{{ user.id }}">{{ Quotes.posted_by }}</a></p>
+                    <input type="submit" value="Add to my list">
+                </form>
+            </div>
+        {% endfor %}
+
+    <h2>Your Favorites</h2>
+</body>
+</html>
